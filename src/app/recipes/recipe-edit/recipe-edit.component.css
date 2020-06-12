@@ -1,0 +1,42 @@
+.container {
+    margin-top: 0px;
+    
+  }
+  
+  input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px solid red
+  }
+  
+   
+  
+  .invalidMsg{
+    color:red;
+  }
+  
+  .submittedDetails{
+    background-color: rgb(255, 255, 128);
+    width: max-content;
+    border: 2px black double
+  }
+
+ 
+
+  .centerImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  } 
+
+  .emptyImg{
+    padding-top: 30%;
+    padding-bottom: 30%;
+    background-color: rgb(252, 250, 176); 
+    border: 2px dashed black; 
+    text-align: center; 
+  }
+
+  img{
+    border:2px solid gray
+  }
+

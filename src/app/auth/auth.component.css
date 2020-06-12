@@ -1,0 +1,19 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid red
+}
+
+.invalidMsg{
+  color:red;
+}
+
+.validMsg{
+    color:green;
+  }
+
+.spinnerLoader{
+  text-align: center;
+}
+
+.errorMsg{
+  font-weight: bold;
+}

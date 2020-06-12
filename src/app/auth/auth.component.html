@@ -1,0 +1,34 @@
+<div class="container-fluid">
+<ng-template appPlaceHolder></ng-template>
+<div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-4">
+        <!-- <div class="alert alert-danger" *ngIf="error">
+            <p class="invalidMsg errorMsg">{{error}}</p>
+        </div> -->
+        <!-- <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert> --> 
+        <div class="spinnerLoader" *ngIf="isLoading">
+            <hr><hr><hr>
+            <app-loadng-spinner></app-loadng-spinner>
+        </div>
+        <form #authForm ="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="email" placeholder="Enter Your Email" id=email name="email" class="form-control" #email="ngModel" ngModel required email>
+                <span *ngIf="!email.valid && email.touched" class="help-block invalidMsg">*Enter valid email!</span>
+                <span *ngIf="email.valid" class="help-block validMsg">Valid email!</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id=password maxlength="14"  minlength="6" placeholder="Enter Your Password" name="password" #password="ngModel" ngModel required class="form-control">
+                <span class="help-block invalidMsg" *ngIf="!password.valid && password.touched">*Enter valid password!</span>
+                <span *ngIf="password.valid" class="help-block validMsg">Valid password!</span>
+            </div>
+
+            <div>
+                <button [disabled]="!authForm.valid" [ngClass]="{'btn-success' :isLoginMode ,'btn-primary': !isLoginMode}" class="btn" type="submit">{{isLoginMode ? 'Login':'Register'}}</button> |
+                <button (click)="onSwitchMode()" class="btn btn-warning" type="button">Switch To {{isLoginMode ? 'Register':'Login'}}</button>
+            </div>
+        </form> <!--   -->
+    </div>
+</div>
+</div>

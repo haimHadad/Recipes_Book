@@ -1,0 +1,10 @@
+a:hover {
+    background-color: #ADD8E6;
+  }
+
+  .pointer {cursor: pointer;}
+
+  .chosenClassActiveLink{
+    background-color: #ADD8E6 !important;
+  }
+

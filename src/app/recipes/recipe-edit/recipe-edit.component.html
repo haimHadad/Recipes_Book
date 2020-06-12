@@ -1,0 +1,94 @@
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-0">
+            <h1 *ngIf="!editMode ; else elseEdit" >Add New Recipe</h1>
+            <ng-template #elseEdit><h1>Edit Recipe</h1></ng-template>
+        </div>
+    </div>    
+    
+     <div class="row">
+        <div class="col-xs-12 ">
+          <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <button [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success">Save</button>
+            <button style="margin-left:0.5%;" (click)="onCancel()" type="=button" class="btn btn-danger">Cancel</button>
+            <br><br>
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" formControlName="name" placeholder="Enter Recipe Name" id="name" class="form-control">
+                  <span *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched" class="invalidMsg">Enter valid name!</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="form-group">
+                  <label for="name">Image URL</label>
+                  <input #imagePath formControlName="imagePath" placeholder="Enter Recipe Image" type="text" id="imagePath" class="form-control">
+                  <span *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched" class="invalidMsg">Enter valid image!</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="centerImage">
+                  <img *ngIf="recipeForm.get('imagePath').valid && !recipeForm.get('imagePath').hasError('imageNameNotFound')" [src]="imagePath.value" class="img-responsive">
+                  <div *ngIf="imagePath.value == '' || recipeForm.get('imagePath').hasError('imageNameNotFound') || !recipeForm.get('imagePath').valid" class="emptyImg">Empty Image</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="form-group">
+                  <label for="name">Description</label>
+                  <textarea type="text" formControlName="description" placeholder="Enter Recipe Description" id="description" class="form-control" rows="6"></textarea>
+                  <span *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched" class="invalidMsg">Enter valid description!</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-10" formArrayName="ingredients">
+                <label for="name">Ingredients</label>
+                <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i">
+                  <div class="col-xs-6">
+                    <input type="text" placeholder="Enter Ingrediant Name" class="form-control" formControlName="name">
+                    <!-- <span *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched" class="invalidMsg">Enter valid ingredient name!</span> -->
+                  </div>
+
+                  <div class="col-xs-2">
+                    <input type="number" placeholder="Amount" class="form-control" formControlName="amount">
+                    <!-- <span *ngIf="!recipeForm.get('amount').valid && recipeForm.get('amount').touched" class="invalidMsg">Enter valid ingredient amount!</span> -->
+                  </div>
+                  <div class="col-xs-2">
+                    <button type="button" (click)="onDeleteIngredient(i)" class="btn btn-danger">X</button>
+                  </div>
+                  <br><br>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <button type="button" (click)="onAddIngredient()" class="btn btn-success">Add Ingredient</button>
+                    <span *ngIf="recipeForm.get('ingredients').hasError('noIngredients')" class="invalidMsg">&nbsp;  Add at least one ingredient!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </form>
+        </div>
+     </div>
+
+     
+    
+    
+
+
+  
+  
+  
