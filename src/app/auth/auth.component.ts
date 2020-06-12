@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService, AuthResponseData } from './auth.service';
 import { Observable, Subscription } from 'rxjs';
@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 import { HeaderService } from '../header/header.service';
 import {AlertComponenet} from '../shared/alert/alert.component';
 import {PlaceholderDirective} from '../shared/placeholder/placeholder.directive';
+import { RecipeService } from '../recipes/recipe.service';
 
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
     styleUrls:['./auth.component.css']
 })
-export class AuthComponent implements OnDestroy{
+export class AuthComponent implements OnInit, OnDestroy{
 
     isLoginMode = true;
     isLoading = false;
@@ -20,8 +21,12 @@ export class AuthComponent implements OnDestroy{
     @ViewChild(PlaceholderDirective, {static: false}) alertHost : PlaceholderDirective; 
     closeSub: Subscription;
 
-    constructor(private authService: AuthService, private router: Router, 
+    constructor(private authService: AuthService, private router: Router, private recipeService: RecipeService,
                 private headerService: HeaderService, private componentFactoryResolver: ComponentFactoryResolver) {}
+
+    ngOnInit(){
+        this.recipeService.deleteAllRecipes();
+    }
 
     onSwitchMode(){
         this.isLoginMode = !this.isLoginMode;

@@ -90,4 +90,9 @@ export class RecipeService{
         this.recipes.splice(index,1);
         this.recipesChanged.next(this.recipes.slice());
       }
+
+      deleteAllRecipes(){
+          this.recipes = [];
+          this.recipesChanged.next(this.recipes.slice());
+      }
 }
