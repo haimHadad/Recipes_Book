@@ -10,12 +10,14 @@ import { RecipeResolverService } from './recipes-resolver.service';
 const routes: Routes = [
     {path: 'recipes', component: RecipesComponent,
 canActivate:[AuthGuard],
-children: [
-    { path: '', component: RecipeStartComponent },
-    { path: 'new', component: RecipeEditComponent },
-    { path: ':id', component: RecipeDetailComponent, resolve:[RecipeResolverService] },
-    { path: ':id/edit', component: RecipeEditComponent, resolve:[RecipeResolverService]  }
-]},];
+children: 
+        [
+            { path: '', component: RecipeStartComponent },
+            { path: 'new', component: RecipeEditComponent },
+            { path: ':id', component: RecipeDetailComponent, resolve:[RecipeResolverService] },
+            { path: ':id/edit', component: RecipeEditComponent, resolve:[RecipeResolverService]  }
+        ]
+    }];
 
 @NgModule({
     imports:[RouterModule.forChild(routes)],
