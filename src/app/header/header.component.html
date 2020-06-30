@@ -2,10 +2,15 @@
 
     <div class="container-fluid"  >
         <div class="navbar-header">
+            <div class="navbar-collapse">
             <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
               <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
             </button>
-            <a (click)="linkPressed = 'Recipe'"  routerLink="/" class="navbar-brand">Recipes Book</a>
+            <div style="display: inline-flex;">
+                <img (click)="linkPressed = 'Recipe'" routerLink="/" style="margin-top:3%;margin-left: -8%; width: 40px; height: 40px;" src="https://www.merchantsmarket.com/wp-content/uploads/2018/04/recipe-icon.png">
+                <a (click)="linkPressed = 'Recipe'"  routerLink="/" class="navbar-brand">&nbsp; Recipes Book</a>
+            </div>
+            </div>
           </div>
           <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class=" nav navbar-nav">

@@ -8,3 +8,6 @@ a:hover {
     background-color: #ADD8E6 !important;
   }
 
+a{
+  background-color: rgb(247, 247, 247);
+}
