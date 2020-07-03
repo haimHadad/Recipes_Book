@@ -1,10 +1,13 @@
-import { Component, ViewChild, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component,  OnInit, OnDestroy } from '@angular/core';
 import { HeaderService } from './header.service';
 import { Subscription } from 'rxjs';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../auth/user.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer';
+import { map } from 'rxjs/operators';
+import * as AuthActions from '../auth/Store/auth.actions';
 
 @Component({
     selector: 'app-header',
@@ -20,7 +23,11 @@ export class headerComponent implements OnInit,OnDestroy{
     dropdownClicked=false;
     isAuthenticated = false;
 
-    constructor(private headerservice: HeaderService,private dataStorageService:DataStorageService, private authService: AuthService, private router: Router){
+    constructor(private headerservice: HeaderService,
+                private dataStorageService:DataStorageService,
+                private authService: AuthService,
+                private router: Router,
+                private store:Store<fromApp.AppState>){
 
     }
 
@@ -40,8 +47,11 @@ export class headerComponent implements OnInit,OnDestroy{
           this.linkPressed = linkName;
         });
 
-        this.subscriptionUser = this.authService.user.subscribe(user=>{
-
+        /* this.subscriptionUser = this.authService.user.subscribe(user=>{ */
+          this.subscriptionUser = this.store
+          .select('auth')
+          .pipe(map(authState=> authState.user))
+          .subscribe(user=>{
           this.isAuthenticated = !!user;
           console.log(!user);
           console.log(!!user);
@@ -66,7 +76,8 @@ export class headerComponent implements OnInit,OnDestroy{
     }
 
     onLogout(){
-      this.authService.logout();
+      /* this.authService.logout(); */
+      this.store.dispatch(new AuthActions.Logout());
     }
 }
 
