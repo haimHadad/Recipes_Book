@@ -4,6 +4,7 @@ import { AlertComponenet } from './alert/alert.component';
 import { PlaceholderDirective } from './placeholder/placeholder.directive';
 import { DropdownHeaderDirective } from './dropdown-header.directive';
 import { CommonModule } from '@angular/common';
+import { LoggingService } from '../logging.service';
 
 @NgModule({
     declarations:[
@@ -20,7 +21,8 @@ import { CommonModule } from '@angular/common';
         DropdownHeaderDirective,
         CommonModule
     ],
-    entryComponents:[AlertComponenet]
+    entryComponents:[AlertComponenet],
+    providers: [LoggingService]
 })
 export class SharedModule{
 

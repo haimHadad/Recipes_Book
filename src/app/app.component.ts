@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import * as fromApp from './store/app.reducer';
 import * as AuthAction from './auth/Store/auth.actions';
 import { Store } from '@ngrx/store';
+import {isPlatformBrowser} from '@angular/common';
+import { LoggingService } from './logging.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +16,17 @@ export class AppComponent  implements OnInit{
   title = 'PROJECT';
 
   constructor(private authService:AuthService,
-              private store : Store<fromApp.AppState>){}
+              private store : Store<fromApp.AppState>,
+              @Inject(PLATFORM_ID)private platformId,
+              private loggingService: LoggingService){}
 
 
   ngOnInit() {
-    this.store.dispatch(new AuthAction.AutoLogin());
+    if(isPlatformBrowser(this.platformId)){
+      this.store.dispatch(new AuthAction.AutoLogin());
+    }
+    this.loggingService.printLog('Hello from AppComponent ngOnInit');
+    
     /* this.authService.autoLogin(); */
   }
   
