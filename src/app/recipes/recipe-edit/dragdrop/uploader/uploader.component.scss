@@ -1,0 +1,51 @@
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 15vw;
+  min-height: 25vh;
+  font-weight: 200;
+  border: 2px solid #1100ff;
+  border-radius: 5px;
+  background: rgb(219, 219, 219);
+  margin: 10px 0;
+  text-align: center;
+
+  &.hovering {
+      border: 2px dashed #f16624;
+      color: #474747 !important;
+      background-color: rgb(255, 255, 166) !important;
+
+  }
+
+  .file-label {
+      font-size: 1.2em;
+  }
+}
+
+input[type="file"]{
+  display: none;
+}
+button{
+  width: 112px;
+  background-color:#e9b20f !important;
+  border-color: #e9b20f!important;
+  color:black;
+  border-radius: 1.5em !important;
+  position: relative;
+  left:-3px;
+  height: 42px;
+  border: #ffbf00 1px solid !important;
+}
+
+button:hover{
+  background-color: #ffbf00 !important;
+  color:black !important;
+
+}
+
+.invalidMsg{
+  color:red;
+}
+

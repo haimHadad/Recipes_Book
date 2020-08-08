@@ -1,0 +1,32 @@
+a.menu_links {
+  cursor: pointer;
+
+}
+
+a{
+  color:white ;
+}
+
+a.linkOnMouseHover:hover {
+  background-color: rgb(220, 234, 255) !important;
+  color:rgb(21, 96, 143) !important;
+  cursor: pointer;
+}
+
+
+a.dropDownOption:hover{
+  background-color: rgb(25, 99, 112) !important;
+  cursor: pointer;
+
+}
+
+.customBackground{
+  background-color: rgb(220, 234, 255)  !important;
+  color:rgb(21, 96, 143)  !important;
+
+}
+
+.linkOnMouse{
+  background-color: rgb(25, 99, 112) !important;
+  cursor: pointer;
+}

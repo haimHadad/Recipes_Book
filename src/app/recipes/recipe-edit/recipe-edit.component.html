@@ -4,8 +4,8 @@
             <h1 *ngIf="!editMode ; else elseEdit" >Add New Recipe</h1>
             <ng-template #elseEdit><h1>Edit Recipe</h1></ng-template>
         </div>
-    </div>    
-    
+    </div>
+
      <div class="row">
         <div class="col-xs-12 ">
           <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
@@ -22,25 +22,34 @@
               </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-xs-8">
                 <div class="form-group">
-                  <label for="name">Image URL</label>
+                  <label for="name">Image</label>
                   <input #imagePath formControlName="imagePath" placeholder="Enter Recipe Image" type="text" id="imagePath" class="form-control">
                   <span *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched" class="invalidMsg">Enter valid image!</span>
+
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="row">
-              <div class="col-xs-8">
-                <div class="centerImage">
-                  <img *ngIf="recipeForm.get('imagePath').valid && !recipeForm.get('imagePath').hasError('imageNameNotFound')" [src]="imagePath.value" class="img-responsive">
-                  <div *ngIf="imagePath.value == '' || recipeForm.get('imagePath').hasError('imageNameNotFound') || !recipeForm.get('imagePath').valid" class="emptyImg">Empty Image</div>
+              <div class="col-xs-4">
+                <div class="form-group">
+                  <label for="name">Image</label>
+                  <uploader (urlLink)="loadImageURL($event)"></uploader>
                 </div>
               </div>
+              <div class="col-md-4">
+                  <br><br>
+                  <img formControlName="imagePath" *ngIf="newImgURL !== ''" [src]="newImgURL" class="img-responsive">
+                  <div *ngIf="newImgURL === ''" class="emptyImg">Empty Image</div>
+                  <!-- || recipeForm.get('imagePath').hasError('imageNameNotFound') || !recipeForm.get('imagePath').valid -->
+                  <!-- recipeForm.get('imagePath').valid && !recipeForm.get('imagePath').hasError('imageNameNotFound') -->
+              </div>
+
             </div>
-            
+
             <div class="row">
               <div class="col-xs-8">
                 <div class="form-group">
@@ -81,14 +90,15 @@
 
 
           </form>
+
         </div>
      </div>
 
-     
-    
-    
 
 
-  
-  
-  
+
+
+
+
+
+

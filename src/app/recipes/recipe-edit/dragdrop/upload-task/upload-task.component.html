@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row" style="margin-top: 4%;">
+
+    <div class="col-md-12 alert alert-dismissible alert-success" >
+      <br>
+      <div class="progressDiv" *ngIf="percentage | async as pct">
+        <div style="direction: rtl;" >
+          <img (click)="onCancel()" style="" class="closeX" src="https://i.ibb.co/KLYd0YB/LOGO.gif" alt="">
+          <img style="width: 15%; height: auto;" src="https://image.flaticon.com/icons/svg/29/29264.svg" alt="">
+        </div>
+
+        <progress [value]="pct" max="100"></progress>
+        <br>
+        {{ pct | number:'1.2-2' }}%
+        <div *ngIf="snapshot | async as snap">
+          {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+        </div>
+      </div>
+      <div style="text-align: center;" class="row" *ngIf="snapshot | async as snap">
+          <button class="btn btn-warning" type="button" (click)="task.pause()" [disabled]="!isActive(snap)">Pause</button>
+          <span>&nbsp;</span>
+          <!-- <button class="btn btn-danger" type="button" (click)="onCancel()" [disabled]="!isActive(snap)">Abort</button> -->
+          <!-- <span>&nbsp;</span> -->
+          <button class="btn btn-success" type="button" (click)="task.resume()" [disabled]="!(snap?.state === 'paused')">Resume</button>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- <div *ngIf="downloadURL" class="row">
+    <div class="col-md-4">
+      <h3>Results:</h3>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div style="text-align: center;" class="col-md-12">
+
+      <div *ngIf="snapshot | async as snap">
+
+        <div class="row">
+          <div class="col-md-12" >
+            <div *ngIf="downloadURL as url">
+              <div class="container">
+                <img  [src]="url">
+                <button title="Delete" (click)="onCancel()" type="button" class="close closeBtn" data-dismiss="alert">&times;</button>
+              </div>
+
+              <br>
+              <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+            </div>
+          </div>
+        </div>
+        <br>
+
+
+      </div>
+    </div>
+
+  </div> -->
+</div>
+
+
+
+
+<!-- <div id="example">
+    <div class="container-fluid" style="direction: rtl;">
+      <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Sunflower_from_Silesia2.jpg" alt="Card image cap">
+      <button type="button" class="close closeBtn" data-dismiss="alert">&times;</button>
+    </div>
+  </div> -->
+
+
+

@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material-Icon">
+
+
+  <div *ngIf="files.length===0" class="row">
+
+    <div class="col-md-4" >
+      <div class="dropzone"
+           dropzone
+           (hovered)="toggleHover($event)"
+           (dropped)="onDrop($event)"
+           [class.hovering]="isHovering"
+           (click)="openExplorer($event)">
+
+
+            <div class="row">
+              <div class="col-md-2" style="background: inherit;" >
+                <br><br>
+                <i style="font-size:48px" class="fa fa-upload" ></i>
+
+              </div>
+              <div class="col-md-9" >
+                <h3>Upload image</h3>
+                <button *ngIf="!isHovering" type="button" (click)="openExplorer($event)">
+                  <span><i class="fa fa-folder-open-o" style="font-size:22px; position: relative; top:2px"></i>&nbsp;Open File</span>
+                  <input #fileInputID accept="image/png, image/jpeg" type="file" (click) = "isFileInputClicked = !isFileInputClicked" (change)="onDrop($event.target.files)"  />
+                </button>
+              </div>
+            </div>
+
+
+
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-md-12">
+      <span *ngIf="errorAmount" class="invalidMsg">You may upload one file only</span>
+      <!-- <span *ngIf="urlLink !== ''" class="invalidMsg">Valid image</span> -->
+    </div>
+  </div>
+
+
+
+  <div *ngIf="files.length > 0" class="row" >
+    <div class="col-md-12" style="text-align: center;">
+
+          <div *ngFor="let file of files">
+              <upload-task  (DownLoadLink)="DownloadLinkReady($event)" (cancelFlag) = "deleteInputFile()" [file]="file"></upload-task>
+          </div>
+
+
+    </div>
+  </div>
+
+
+
+
+

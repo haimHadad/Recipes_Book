@@ -3,15 +3,17 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {trigger, state, style, transition, animate, group, keyframes} from '@angular/animations';
 
 @Component({
     selector:'app-recipe-list',
     templateUrl:'./recipe-list.component.html',
-    styleUrls:['./recipe-list.component.css']
+    styleUrls:['./recipe-list.component.scss']
+
 })
 
 export class RecipeListComponent implements OnInit,OnDestroy{
-    
+
     recipes:Recipe[];
     subscription: Subscription;
 

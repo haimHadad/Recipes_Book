@@ -11,14 +11,14 @@ import { RecipeService } from '../recipes/recipe.service';
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
-    styleUrls:['./auth.component.css']
+    styleUrls:['./auth.component.scss']
 })
 export class AuthComponent implements OnInit, OnDestroy{
 
     isLoginMode = true;
     isLoading = false;
     error:string = null;
-    @ViewChild(PlaceholderDirective, {static: false}) alertHost : PlaceholderDirective; 
+    @ViewChild(PlaceholderDirective, {static: false}) alertHost : PlaceholderDirective;
     closeSub: Subscription;
 
     constructor(private authService: AuthService, private router: Router, private recipeService: RecipeService,
@@ -49,7 +49,7 @@ export class AuthComponent implements OnInit, OnDestroy{
         if(this.isLoginMode){
             authObs = this.authService.login(email,password);
         }else{
-            authObs = this.authService.signup(email,password); 
+            authObs = this.authService.signup(email,password);
         }
 
         authObs.subscribe(
@@ -85,11 +85,11 @@ export class AuthComponent implements OnInit, OnDestroy{
         });
     }
 
-    
+
     ngOnDestroy(){
         if(this.closeSub){
             this.closeSub.unsubscribe();
         }
-        
+
     }
 }

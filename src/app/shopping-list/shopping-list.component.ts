@@ -7,11 +7,11 @@ import { HeaderService } from '../header/header.service';
 @Component({
     selector: 'app-shopping-list',
     templateUrl: './shopping-list.component.html',
-    styleUrls: ['./shopping-list.component.css'],
+    styleUrls: ['./shopping-list.component.scss'],
 })
 
 export class ShoppingListComponent implements OnInit, OnDestroy{
-    
+
     ingredients:Ingredient[];
     private subscription : Subscription;
 
@@ -21,7 +21,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
 
     ngOnInit() {
       this.headerService.linkButton.next('ShoppingList');
-      this.ingredients =  this.slService.getIngredients(); 
+      this.ingredients =  this.slService.getIngredients();
       console.log(this.ingredients);
       this.subscription = this.slService.ingrediantChanged
         .subscribe(
@@ -30,7 +30,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
           }
       );
     }
-   
+
     ngOnDestroy(): void {
       this.subscription.unsubscribe();
     }

@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'app-shopping-list-edit',
     templateUrl:'./shopping-list-edit.component.html',
-    styleUrls:['./shopping-list-edit.component.css']
+    styleUrls:['./shopping-list-edit.component.scss']
 })
 
 export class ShoppingListEditComponent implements OnInit, OnDestroy{
@@ -38,11 +38,11 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy(){
-        this.subscription.unsubscribe();   
+        this.subscription.unsubscribe();
     }
 
     onSubmit(form:NgForm){
-        
+
         const ingName = form.value.name;
         const ingAmount = form.value.amount;
         const newIngrediant = new Ingredient(ingName,ingAmount);
@@ -51,14 +51,14 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy{
         }else{
             this.slService.addIngredient(newIngrediant);
         }
-        
+
         this.editMode = false;
         form.reset();
     }
 
     onClear(){
         this.slForm.reset();
-        this.editMode = false; 
+        this.editMode = false;
     }
 
     onDelete(){

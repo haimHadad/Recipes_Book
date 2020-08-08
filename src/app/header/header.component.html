@@ -5,20 +5,20 @@
             <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
               <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
             </button>
-            <a (click)="linkPressed = 'Recipe'"  routerLink="/" class="navbar-brand">Recipes Book</a>
+            <strong><a (click)="linkPressed = 'Recipe'"  routerLink="/recipes" class="navbar-brand">Recipes Book</a></strong>
           </div>
           <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class=" nav navbar-nav">
                 <li routerLinkActive="active" *ngIf="isAuthenticated" >
                     <a class="linkOnMouseHover" (click)="linkPressed = 'Recipe'" [ngClass]="{linkOnMouse: linkPressed ==='Recipe'}" routerLink="/recipes">Recipe</a>
-                </li> 
+                </li>
                 <li routerLinkActive="active" *ngIf="!isAuthenticated">
                     <a class="linkOnMouseHover" (click)="linkPressed = 'Authenticate'" [ngClass]="{linkOnMouse: linkPressed ==='Authenticate'}" routerLink="/auth">Register/Login</a>
                 </li>
                 <li routerLinkActive="active" >
                     <a class="linkOnMouseHover" (click)="linkPressed = 'ShoppingList'" [ngClass]="{linkOnMouse: linkPressed ==='ShoppingList'}"  routerLink="/shopping-list">Shopping List</a>
-                </li>     
-                
+                </li>
+
             </ul>
             <ul class=" nav navbar-nav navbar-right ">
                 <li>

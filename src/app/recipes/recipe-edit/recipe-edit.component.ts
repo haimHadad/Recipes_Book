@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.css']
+  styleUrls: ['./recipe-edit.component.scss']
 })
 export class RecipeEditComponent implements OnInit {
   recipeForm: FormGroup;
@@ -16,9 +16,10 @@ export class RecipeEditComponent implements OnInit {
   editMode: boolean = false;
   newName:string ='';
   newDscription='';
-  newImgURL='';
+  newImgURL:string='';
   newIngredients:Ingredient[] =[];
   ingredientsCounter:number = 0;
+  backupURL:string='';
 
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
@@ -47,6 +48,8 @@ export class RecipeEditComponent implements OnInit {
       const recipe = this.recipeService.getRecipe(this.id)
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
+      this.newImgURL = recipeImagePath;
+      this.backupURL = recipeImagePath;
       recipeDescription = recipe.description;
       if(recipe['ingredients']){
         for(let ingredient of recipe.ingredients){
@@ -66,6 +69,7 @@ export class RecipeEditComponent implements OnInit {
       'description': new FormControl(recipeDescription, Validators.required),
       'ingredients': recipeIngredients
     });
+
   }
 
   get controls() { // a getter!
@@ -106,7 +110,7 @@ export class RecipeEditComponent implements OnInit {
   onCancel(){
     console.log(this.recipeForm);
     this.router.navigate(['../'], {relativeTo: this.route}); //this work fine, with ID
-    
+
   }
 
   onDeleteIngredient(index: number){
@@ -115,7 +119,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onImageError(control: FormControl) : Promise<any> | Observable<any>{
-    let imageUrl =control.value; 
+    let imageUrl =control.value;
     const promise = new Promise<any>((resolve,reject) => {
 
       this.imageExists(imageUrl, function(exists) {
@@ -125,11 +129,11 @@ export class RecipeEditComponent implements OnInit {
         }else{
           resolve(null);
         }
-        }); 
+        });
 
 
     }); //end of the promise
-    
+
     return promise;
   }
 
@@ -140,7 +144,7 @@ export class RecipeEditComponent implements OnInit {
     img.onerror = function() { callback(false); };
     img.src = url;
   }
-    
+
 
   isEmptyIngredientsArray(control: FormArray):{[s:string]: boolean}{
     console.log("%No of ingredients--->" + this.ingredientsCounter);
@@ -148,7 +152,21 @@ export class RecipeEditComponent implements OnInit {
       return {'noIngredients' : true }
     }
     return null;
-    
+
+  }
+
+  loadImageURL(url:string){
+
+    if(url !== ''){
+      this.newImgURL = url;
+    }
+    if(this.editMode===false){
+      this.newImgURL = url;
+    }
+    if(url == ''){
+      this.newImgURL = ""+ this.backupURL;
+    }
+
   }
 
 

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls:['./header.component.css']
+    styleUrls:['./header.component.scss']
 })
 export class headerComponent implements OnInit,OnDestroy{
     collapsed = true;
@@ -28,10 +28,10 @@ export class headerComponent implements OnInit,OnDestroy{
       /* if(!this.isAuthenticated){
         this.router.navigate(['/auth']);
       } */
-      
+
       this.subscriptionDropDown = this.headerservice.isDropdownOpen.subscribe(
         (state: boolean) =>{
-          this.dropdownClicked = state;        
+          this.dropdownClicked = state;
       }
       );
 
@@ -47,7 +47,7 @@ export class headerComponent implements OnInit,OnDestroy{
           console.log(!!user);
         })
 
-  
+
     }
     ngOnDestroy(): void {
       this.subscriptionDropDown.unsubscribe();
@@ -61,7 +61,7 @@ export class headerComponent implements OnInit,OnDestroy{
 
     onFetchData(){
       this.dataStorageService.fetchRecipes().subscribe(
-        
+
       );
     }
 
@@ -77,4 +77,4 @@ export class headerComponent implements OnInit,OnDestroy{
             this.manageButton.nativeElement.classList.remove('customBackground');
           } */
 
-          //    @ViewChild('manageButton', {static: false}) manageButton: any;   
+          //    @ViewChild('manageButton', {static: false}) manageButton: any;
