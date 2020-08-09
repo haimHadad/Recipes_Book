@@ -7,8 +7,8 @@ import { AuthService } from '../auth/auth.service';
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService implements OnInit{
-    
-    
+
+
     constructor( private http :HttpClient, private recipeService: RecipeService, private authService: AuthService ){
 
     }
@@ -28,12 +28,12 @@ export class DataStorageService implements OnInit{
 
     fetchRecipes()
     {
-        
-    
-        
+
+
+
             return this.http.get<Recipe[]>(
                 'https://ng-course-recipe-book-682b9.firebaseio.com//recipes.json'
-            ).pipe( 
+            ).pipe(
                 map(recipes =>{
                 return recipes.map(recipe =>{ //for every recipe -> we going to transform
                     return{
@@ -45,7 +45,7 @@ export class DataStorageService implements OnInit{
             tap(recipes => {
                 this.recipeService.setRecipes(recipes);
             }));
-    
+
     }
 
 }

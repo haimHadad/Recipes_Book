@@ -40,16 +40,18 @@ export class RecipeEditComponent implements OnInit {
 
   initForm() {
     let recipeName = '';
-    let recipeImagePath = '';
+    this.newImgURL = '';
     let recipeDescription = '';
     let recipeIngredients = new FormArray([], this.isEmptyIngredientsArray.bind(this));
 
     if(this.editMode){
       const recipe = this.recipeService.getRecipe(this.id)
       recipeName = recipe.name;
-      recipeImagePath = recipe.imagePath;
-      this.newImgURL = recipeImagePath;
-      this.backupURL = recipeImagePath;
+      //recipeImagePath = recipe.imagePath;
+      //this.newImgURL = recipeImagePath;
+      //this.backupURL = recipeImagePath;
+      this.newImgURL = recipe.imagePath;
+      this.backupURL = recipe.imagePath;
       recipeDescription = recipe.description;
       if(recipe['ingredients']){
         for(let ingredient of recipe.ingredients){
@@ -65,7 +67,7 @@ export class RecipeEditComponent implements OnInit {
 
     this.recipeForm = new FormGroup({
       'name': new FormControl(recipeName, Validators.required),
-      'imagePath': new FormControl(recipeImagePath, [Validators.required], this.onImageError.bind(this)),
+      'imagePath': new FormControl(this.newImgURL, Validators.required),
       'description': new FormControl(recipeDescription, Validators.required),
       'ingredients': recipeIngredients
     });
@@ -159,12 +161,17 @@ export class RecipeEditComponent implements OnInit {
 
     if(url !== ''){
       this.newImgURL = url;
+      this.recipeForm.patchValue({'imagePath': this.newImgURL});
     }
     if(this.editMode===false){
       this.newImgURL = url;
     }
     if(url == ''){
       this.newImgURL = ""+ this.backupURL;
+      if(!this.editMode){
+        this.recipeForm.patchValue({'imagePath': ''});
+      }
+
     }
 
   }

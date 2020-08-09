@@ -42,8 +42,9 @@
               </div>
               <div class="col-md-4">
                   <br><br>
-                  <img formControlName="imagePath" *ngIf="newImgURL !== ''" [src]="newImgURL" class="img-responsive">
+                  <img  *ngIf="newImgURL !== ''" [src]="newImgURL" class="img-responsive form-control">
                   <div *ngIf="newImgURL === ''" class="emptyImg">Empty Image</div>
+                  <span *ngIf="!recipeForm.get('imagePath').valid" class="invalidMsg">Enter valid image!</span>
                   <!-- || recipeForm.get('imagePath').hasError('imageNameNotFound') || !recipeForm.get('imagePath').valid -->
                   <!-- recipeForm.get('imagePath').valid && !recipeForm.get('imagePath').hasError('imageNameNotFound') -->
               </div>

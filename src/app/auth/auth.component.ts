@@ -13,7 +13,7 @@ import { RecipeService } from '../recipes/recipe.service';
     templateUrl: './auth.component.html',
     styleUrls:['./auth.component.scss']
 })
-export class AuthComponent implements OnInit, OnDestroy{
+export class AuthComponent implements OnInit{
 
     isLoginMode = true;
     isLoading = false;
@@ -86,10 +86,5 @@ export class AuthComponent implements OnInit, OnDestroy{
     }
 
 
-    ngOnDestroy(){
-        if(this.closeSub){
-            this.closeSub.unsubscribe();
-        }
 
-    }
 }
