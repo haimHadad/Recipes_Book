@@ -5,5 +5,7 @@ export class HeaderService{
 
     isDropdownOpen = new Subject<boolean>();
     linkButton = new Subject<string>();
+    isRecipesSaved = new Subject<boolean>();
+    isLoadingRecipes = new Subject<boolean>();
 
 }

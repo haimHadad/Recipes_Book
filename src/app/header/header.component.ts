@@ -60,8 +60,9 @@ export class headerComponent implements OnInit,OnDestroy{
     }
 
     onFetchData(){
+      this.headerservice.isLoadingRecipes.next(true);
       this.dataStorageService.fetchRecipes().subscribe(
-
+        () => {this.headerservice.isLoadingRecipes.next(false);}
       );
     }
 

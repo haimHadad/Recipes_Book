@@ -4,12 +4,14 @@ import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
 import {map, tap, take, exhaustMap} from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
+import { HeaderService } from '../header/header.service';
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService implements OnInit{
 
 
-    constructor( private http :HttpClient, private recipeService: RecipeService, private authService: AuthService ){
+    constructor( private http :HttpClient, private recipeService: RecipeService, private authService: AuthService,
+                private headerService: HeaderService ){
 
     }
 
@@ -22,6 +24,7 @@ export class DataStorageService implements OnInit{
         this.http.put('https://ng-course-recipe-book-682b9.firebaseio.com//recipes.json',recipes).subscribe(
             response =>{
                 console.log(response);
+                this.headerService.isRecipesSaved.next(true);
             }
         );
     }

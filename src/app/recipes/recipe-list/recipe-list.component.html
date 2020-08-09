@@ -7,6 +7,11 @@
 <!-- routerLink="new" -->
 <div class="row">
     <div class="col-xs-12">
+        <app-loadng-spinner *ngIf="recipesLoaded"></app-loadng-spinner>
+        <div *ngIf="recipesSaved" class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert" (click) = "deleteSavesMsg()">&times;</button>
+          <strong>Recipes have been saved successfully.</strong>
+        </div>
         <app-recipe-item
         *ngFor="let recipeEl of recipes; let i = index"
          [recipe]="recipeEl"
