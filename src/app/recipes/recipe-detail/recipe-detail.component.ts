@@ -15,6 +15,7 @@ export class RecipeDetailComponent implements OnInit{
     recipe:Recipe;
     paramsSubscription: Subscription;
     id:number;
+    IngAddedToSL: boolean = false;
 
     constructor(private recipeService: RecipeService,
                 private route: ActivatedRoute,
@@ -33,6 +34,7 @@ export class RecipeDetailComponent implements OnInit{
 
     onAddToShoppingList(){
         this.recipeService.AddIngredientToShoppingList(this.recipe.ingredients);
+        this.IngAddedToSL = true;
     }
 
     onEditRecipe(){
@@ -44,5 +46,9 @@ export class RecipeDetailComponent implements OnInit{
     onDeleteRecipe(){
       this.recipeService.deleteRecipe(this.id);
       this.router.navigate(['/recipes']); //this work fine, with ID
+    }
+
+    closeIngAddedToSlMsg(){
+      this.IngAddedToSL = false;
     }
 }
