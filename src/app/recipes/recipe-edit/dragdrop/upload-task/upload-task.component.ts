@@ -23,6 +23,7 @@ export class UploadTaskComponent implements OnInit {
 
   ngOnInit() {
     this.startUpload();
+    /* console.log("file is--->"+this.file.namethis.filename); */
   }
 
   startUpload() {

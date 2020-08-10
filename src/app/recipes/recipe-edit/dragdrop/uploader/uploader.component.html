@@ -39,7 +39,7 @@
 
     <div class="col-md-12">
       <span *ngIf="errorAmount" class="invalidMsg">You may upload one file only</span>
-      <!-- <span *ngIf="urlLink !== ''" class="invalidMsg">Valid image</span> -->
+      <span *ngIf="errorType" class="invalidMsg">Invalid file type</span>
     </div>
   </div>
 

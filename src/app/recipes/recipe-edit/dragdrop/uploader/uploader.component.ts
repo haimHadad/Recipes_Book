@@ -13,6 +13,7 @@ export class UploaderComponent{
   isFileInputClicked :boolean= true;
   isHovering: boolean;
   errorAmount:boolean = false;
+  errorType:boolean=false;
   fileReady : boolean = false;
   @Output() urlLink = new EventEmitter<string>();
 
@@ -25,7 +26,16 @@ export class UploaderComponent{
   }
 
   onDrop(files: FileList) {
+    let typeFile= files[0].type+"";
+    typeFile = typeFile.substring(0,5);
     this.urlLink .emit("");
+    this.errorType = false;
+    console.log("type is======>"+typeFile);
+    if(typeFile !== 'image'){
+      this.errorType = true;
+      /* this.deleteInputFile(); */
+      return;
+    }
     if(files.length > 1){
       this.errorAmount = true;
       return;
@@ -35,7 +45,9 @@ export class UploaderComponent{
       return;
     }
     this.errorAmount = false;
+    /* this.fileName = files[0].name+""; */
     this.files.push(files.item(0));
+
     /* for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i));
     } */

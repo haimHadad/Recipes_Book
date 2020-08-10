@@ -5,10 +5,10 @@
       <br>
       <div class="progressDiv" *ngIf="percentage | async as pct">
         <div style="direction: rtl;" >
-          <img (click)="onCancel()" style="" class="closeX" src="https://i.ibb.co/KLYd0YB/LOGO.gif" alt="">
+          <img (click)="onCancel()"  class="closeX" src="https://i.ibb.co/KLYd0YB/LOGO.gif" alt="">
           <img style="width: 15%; height: auto;" src="https://image.flaticon.com/icons/svg/29/29264.svg" alt="">
         </div>
-
+        <p style="color: black; font-weight: bold; margin-top: 2.5%;">{{file.name}}</p>
         <progress [value]="pct" max="100"></progress>
         <br>
         {{ pct | number:'1.2-2' }}%
@@ -35,15 +35,10 @@
     <div class="col-md-4">
       <h3>Results:</h3>
     </div>
-
   </div>
-
   <div class="row">
-
     <div style="text-align: center;" class="col-md-12">
-
       <div *ngIf="snapshot | async as snap">
-
         <div class="row">
           <div class="col-md-12" >
             <div *ngIf="downloadURL as url">
@@ -51,18 +46,14 @@
                 <img  [src]="url">
                 <button title="Delete" (click)="onCancel()" type="button" class="close closeBtn" data-dismiss="alert">&times;</button>
               </div>
-
               <br>
               <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
             </div>
           </div>
         </div>
         <br>
-
-
       </div>
     </div>
-
   </div> -->
 </div>
 
@@ -75,6 +66,3 @@
       <button type="button" class="close closeBtn" data-dismiss="alert">&times;</button>
     </div>
   </div> -->
-
-
-
