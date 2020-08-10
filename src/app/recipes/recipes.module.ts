@@ -12,7 +12,6 @@ import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DropzoneDirective } from './recipe-edit/dragdrop/dropzone.directive';
 import { AngularFireModule } from '@angular/fire';
@@ -22,7 +21,7 @@ import {environment} from '../../environments/environment';
 import { UploaderComponent } from './recipe-edit/dragdrop/uploader/uploader.component';
 import { UploadTaskComponent } from './recipe-edit/dragdrop/upload-task/upload-task.component';
 import { FileSizePipe } from './recipe-edit/dragdrop/upload-task/file-size.pipe';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({

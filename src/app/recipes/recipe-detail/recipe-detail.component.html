@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" [@ShowDetails]>
     <div class="col-xs-12">
         <img [src]="recipe.imagePath" alt="{{recipe.name}}" class="img-responsive">
 
@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-          <div *ngIf="IngAddedToSL" class="alert alert-dismissible alert-success btn-group" style="width: 49%;">
+          <div [@confirmation] *ngIf="IngAddedToSL" class="alert alert-dismissible alert-success btn-group" style="width: 49%;">
             <button (click)="closeIngAddedToSlMsg()" type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Ingredients added to shopping list</strong> <br> <a routerLink="/shopping-list" class="alert-link">Open shopping List</a>.
           </div>
@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-xs-6" >
            <ul class="list-group" >
-               <li class="list-group-item"  *ngFor="let ingrediant of recipe.ingredients">
+               <li  class="list-group-item"  *ngFor="let ingrediant of recipe.ingredients">
                 <strong>
                 {{ingrediant.name}} - {{ingrediant.amount}}
                 </strong>

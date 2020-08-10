@@ -11,7 +11,7 @@
           <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class=" nav navbar-nav">
                 <li routerLinkActive="active" *ngIf="isAuthenticated" >
-                    <a class="linkOnMouseHover" (click)="linkPressed = 'Recipe'" [ngClass]="{linkOnMouse: linkPressed ==='Recipe'}" routerLink="/recipes">Recipe</a>
+                    <a class="linkOnMouseHover" (click)="linkPressed = 'Recipe'" [ngClass]="{linkOnMouse: linkPressed ==='Recipe'}" routerLink="/recipes">Recipes</a>
                 </li>
                 <li routerLinkActive="active" *ngIf="!isAuthenticated">
                     <a class="linkOnMouseHover" (click)="linkPressed = 'Authenticate'" [ngClass]="{linkOnMouse: linkPressed ==='Authenticate'}" routerLink="/auth">Register/Login</a>
