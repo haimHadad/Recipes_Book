@@ -9,9 +9,9 @@
      <div class="row">
         <div class="col-xs-12 ">
           <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-            <button *ngIf="editMode" [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success">Save Changes To List</button>
-            <button *ngIf="!editMode" [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success">Add Recipe To List</button>
-            <button style="margin-left:0.5%;" (click)="onCancel()" type="=button" class="btn btn-danger">Cancel</button>
+            <button *ngIf="editMode" style=" padding-top: 3.40px; padding-bottom: 7px;" [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success"><i style="font-size: 22px !important; position: relative; top:3px;" class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Save Changes To List</button>
+            <button style=" padding-top: 3.40px; padding-bottom: 7px;" *ngIf="!editMode" [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success"><i style="font-size: 22px !important; position: relative; top:4px" class="fa fa-plus-square-o" aria-hidden="true"></i> &nbsp;Add Recipe To List</button>
+            <button style="margin-left:0.5%;" (click)="onCancel()" type="=button" class="btn btn-danger"><i style="position: relative; top:1.3px;" class="fa fa-arrow-down" aria-hidden="true"></i>&nbsp; Cancel</button>
             <br><br>
             <div class="row">
               <div class="col-xs-8">
@@ -76,14 +76,14 @@
                     <!-- <span *ngIf="!recipeForm.get('amount').valid && recipeForm.get('amount').touched" class="invalidMsg">Enter valid ingredient amount!</span> -->
                   </div>
                   <div class="col-xs-2">
-                    <button type="button" (click)="onDeleteIngredient(i)" class="btn btn-danger">X</button>
+                    <button type="button" style="padding-top:5px; padding-bottom: 5px;" (click)="onDeleteIngredient(i)" class="btn btn-danger"><i style="font-size: 20px !important;" class="fa fa-times" aria-hidden="true"></i></button>
                   </div>
                   <br><br>
                 </div>
                 <br>
                 <div class="row">
                   <div class="col-xs-12">
-                    <button type="button" (click)="onAddIngredient()" class="btn btn-success">Add Ingredient</button>
+                    <button type="button" (click)="onAddIngredient()"  class="btn btn-success"><i style="position: relative; top:2.5px" class="fa fa-plus" aria-hidden="true"></i> &nbsp;Add Ingredient</button>
                     <span *ngIf="recipeForm.get('ingredients').hasError('noIngredients')" class="invalidMsg">&nbsp;  Add at least one ingredient!</span>
                   </div>
                 </div>

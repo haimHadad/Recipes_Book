@@ -11,22 +11,22 @@
           <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class=" nav navbar-nav">
                 <li routerLinkActive="active" *ngIf="isAuthenticated" >
-                    <a class="linkOnMouseHover" (click)="linkPressed = 'Recipe'" [ngClass]="{linkOnMouse: linkPressed ==='Recipe'}" routerLink="/recipes">Recipes</a>
+                    <a class="linkOnMouseHover" (click)="linkPressed = 'Recipe'" [ngClass]="{linkOnMouse: linkPressed ==='Recipe'}" routerLink="/recipes"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;Recipes</a>
                 </li>
                 <li routerLinkActive="active" *ngIf="!isAuthenticated">
                     <a class="linkOnMouseHover" (click)="linkPressed = 'Authenticate'" [ngClass]="{linkOnMouse: linkPressed ==='Authenticate'}" routerLink="/auth">Register/Login</a>
                 </li>
                 <li routerLinkActive="active" >
-                    <a class="linkOnMouseHover" (click)="linkPressed = 'ShoppingList'" [ngClass]="{linkOnMouse: linkPressed ==='ShoppingList'}"  routerLink="/shopping-list">Shopping List</a>
+                    <a class="linkOnMouseHover" (click)="linkPressed = 'ShoppingList'" [ngClass]="{linkOnMouse: linkPressed ==='ShoppingList'}"  routerLink="/shopping-list"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; Shopping List</a>
                 </li>
 
             </ul>
             <ul class=" nav navbar-nav navbar-right ">
                 <li>
-                    <a class="linkOnMouseHover" (click)="onLogout()" *ngIf="isAuthenticated">Logout</a>
+                    <a class="linkOnMouseHover" (click)="onLogout()" *ngIf="isAuthenticated"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout </a>
                 </li>
                 <li class="" appDropdownHeader *ngIf="isAuthenticated">
-                    <a  class="dropdown-toggle linkOnMouseHover" [ngClass]="{customBackground:dropdownClicked}" role="button">Manage <span class="caret"></span></a>
+                    <a  class="dropdown-toggle linkOnMouseHover" [ngClass]="{customBackground:dropdownClicked}" role="button"><i class="fa fa-briefcase" aria-hidden="true"></i> &nbsp;Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a  class="dropDownOption" (click)="onSaveData()" >Save Data</a></li>
                         <li><a  class="dropDownOption" (click)="onFetchData()" >Fetch Data</a></li>

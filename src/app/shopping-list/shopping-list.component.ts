@@ -48,11 +48,11 @@ import {trigger, state, style, transition, animate, group, keyframes} from '@ang
 
         transition('* => void', [
           group([
-            animate(200,
+            animate(450,
               style({
                 color: 'red',
               })),
-            animate(400,
+            animate(450,
             style({
               transform: 'translateX(50px)',
               opacity:0

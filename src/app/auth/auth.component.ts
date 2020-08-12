@@ -7,11 +7,60 @@ import { HeaderService } from '../header/header.service';
 import {AlertComponenet} from '../shared/alert/alert.component';
 import {PlaceholderDirective} from '../shared/placeholder/placeholder.directive';
 import { RecipeService } from '../recipes/recipe.service';
+import {trigger, state, style, transition, animate, group, keyframes} from '@angular/animations';
 
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
-    styleUrls:['./auth.component.scss']
+    styleUrls:['./auth.component.scss'],
+    animations:[
+      trigger('auth', [
+        state('normal', style({
+          opacity:1,
+          transform: 'translateX(0)'
+        })),
+
+        transition('void => *', [
+          animate(150,keyframes([
+            style({
+              transform: 'translateY(-25px)',
+              opacity:0,
+              offset:0
+            }),
+            style({
+              transform: 'translateY(-15px)',
+              opacity:0.5,
+              offset:0.3
+            }),
+            style({
+              transform: 'translateY(-05px)',
+              opacity:0.8,
+              offset:0.8
+            }),
+            style({
+              transform: 'translateY(0px)',
+              opacity:1,
+              offset:1
+            })
+          ]))
+        ]),
+
+        transition('* => void', [
+          group([
+            animate(150,
+              style({
+                color: 'gray',
+              })),
+            animate(400,
+            style({
+              transform: 'translateY(25px)',
+              opacity:0
+            }))
+          ])
+
+        ])
+      ])
+    ]
 })
 export class AuthComponent implements OnInit{
 

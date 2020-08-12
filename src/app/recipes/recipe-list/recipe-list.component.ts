@@ -12,13 +12,13 @@ import { HeaderService } from 'src/app/header/header.service';
     styleUrls:['./recipe-list.component.scss'],
     animations: [
       trigger('confirmation', [
-        state('normal', style({
-          opacity:1,
+        state('none', style({
+          opacity:0,
           transform: 'translateX(0)'
         })),
 
         transition('void => *', [
-          animate(1000,keyframes([
+          animate(150,keyframes([
             style({
               transform: 'translateX(75px)',
               opacity:0,
@@ -44,11 +44,58 @@ import { HeaderService } from 'src/app/header/header.service';
 
         transition('* => void', [
           group([
-            animate(300,
+            animate(150,
               style({
                 color: 'gray',
               })),
-            animate(800,
+            animate(200,
+            style({
+              transform: 'translateX(100px)',
+              opacity:0
+            }))
+          ])
+
+        ])
+      ]),
+
+      trigger('recipesList', [
+        state('normal', style({
+          opacity:1,
+          transform: 'translateX(0)'
+        })),
+
+        transition('void => *', [
+          animate(150,keyframes([
+            style({
+              transform: 'translateX(-50px)',
+              opacity:0,
+              offset:0
+            }),
+            style({
+              transform: 'translateX(-35px)',
+              opacity:0.5,
+              offset:0.3
+            }),
+            style({
+              transform: 'translateX(-10px)',
+              opacity:1,
+              offset:0.8
+            }),
+            style({
+              transform: 'translateX(0px)',
+              opacity:1,
+              offset:1
+            })
+          ]))
+        ]),
+
+        transition('* => void', [
+          group([
+            animate(150,
+              style({
+                color: 'gray',
+              })),
+            animate(200,
             style({
               transform: 'translateX(100px)',
               opacity:0
@@ -57,7 +104,9 @@ import { HeaderService } from 'src/app/header/header.service';
 
         ])
       ])
+
     ]
+
 
 })
 
@@ -69,6 +118,7 @@ export class RecipeListComponent implements OnInit,OnDestroy{
     recipesSaved:boolean=false;
     subscriptionListLoaded: Subscription;
     recipesLoaded:boolean=false;
+
 
     constructor(private recipeService: RecipeService,
                 private router: Router,

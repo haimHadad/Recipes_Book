@@ -18,7 +18,7 @@ import {trigger, state, style, transition, animate, group, keyframes} from '@ang
       })),
 
       transition('void => *', [
-        animate(1000,keyframes([
+        animate(250,keyframes([
           style({
             transform: 'translateX(100px)',
             opacity:0,
@@ -53,7 +53,7 @@ import {trigger, state, style, transition, animate, group, keyframes} from '@ang
             style({
               color: 'gray',
             })),
-          animate(800,
+          animate(300,
           style({
             transform: 'translateX(50px)',
             opacity:0

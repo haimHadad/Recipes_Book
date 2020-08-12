@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-xs-12">
-        <button style="cursor: pointer;" (click)="onNewRecipe()"  class="btn btn-success">New Recipe</button>
+        <button style="cursor: pointer;" (click)="onNewRecipe()"  class="btn btn-success"><i style="font-size: 22px !important; position: relative; top:2.5px" class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;New Recipe</button>
     </div>
 </div>
 <hr>
 <!-- routerLink="new" -->
-<div class="row">
-    <div class="col-xs-12">
+<div class="row" [@recipesList]>
+    <div class="col-xs-12" >
         <app-loadng-spinner *ngIf="recipesLoaded"></app-loadng-spinner>
         <div [@confirmation] *ngIf="recipesSaved" class="alert alert-dismissible alert-success">
           <button type="button" class="close" data-dismiss="alert" (click) = "deleteSavesMsg()">&times;</button>

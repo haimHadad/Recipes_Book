@@ -4,7 +4,7 @@
         <div class="row">
           <div class="col-sm-5 form-group">
             <label for="name">Name</label>
-            <input placeholder="Insert Name" type="text" id="name" class="form-control" ngModel name="name" #name="ngModel" required> 
+            <input placeholder="Insert Name" type="text" id="name" class="form-control" ngModel name="name" #name="ngModel" required>
             <span class="invalidMsg" *ngIf="!name.valid && (name.touched || name.dirty)">Please enter valid name</span>
           </div>
           <div class="col-sm-2 col-md-1 form-group">
@@ -16,12 +16,16 @@
         </div>
         <div class="row">
             <div class="col-md-12 ">
-              <button class="btn btn-success" type="submit" [disabled]="!f.valid" >{{editMode ? 'Update' : 'Add'}}</button>
-              <button style="margin-left: 0.5%;" class="btn btn-danger" type="button" *ngIf="editMode" (click)="onDelete()">Delete</button>
-              <button style="margin-left:0.5%;" class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+              <button class="btn btn-success" type="submit" [disabled]="!f.valid" >
+                <i *ngIf="editMode" class="fa fa-pencil" aria-hidden="true">&nbsp;</i>
+                <i *ngIf="!editMode" class="fa fa-plus-square" aria-hidden="true">&nbsp;</i>
+
+                {{editMode ? 'Update' : 'Add'}}
+              </button>
+              <button style="margin-left: 0.5%;" class="btn btn-danger" type="button" *ngIf="editMode" (click)="onDelete()"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</button>
+              <button style="margin-left:0.5%;" class="btn btn-primary" type="button" (click)="onClear()"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
             </div>
           </div>
       </form>
     </div>
   </div>
-  
