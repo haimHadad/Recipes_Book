@@ -18,7 +18,7 @@ import { HeaderService } from 'src/app/header/header.service';
         })),
 
         transition('void => *', [
-          animate(150,keyframes([
+          animate(300,keyframes([
             style({
               transform: 'translateX(75px)',
               opacity:0,
@@ -44,7 +44,7 @@ import { HeaderService } from 'src/app/header/header.service';
 
         transition('* => void', [
           group([
-            animate(150,
+            animate(200,
               style({
                 color: 'gray',
               })),
