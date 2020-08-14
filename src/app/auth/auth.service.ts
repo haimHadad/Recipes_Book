@@ -6,6 +6,7 @@ import { User } from './user.service';
 import { Router } from '@angular/router';
 import { HeaderService } from '../header/header.service';
 import {environment} from '../../environments/environment'
+import { RecipeService } from '../recipes/recipe.service';
 
 export interface AuthResponseData{
     kind: string;
@@ -25,9 +26,12 @@ export class AuthService{
     token:string = null;
     private tokenExpirationTimer:any;
 
-    constructor(private http: HttpClient, private router: Router, private headerService: HeaderService){}
+    constructor(private http: HttpClient,
+                private router: Router,
+                private headerService: HeaderService,
+                private recipeService: RecipeService){}
 
-    
+
     signup(newEmail:string, newPassword:string){
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.firebaseAPIKey,
             {
@@ -35,14 +39,14 @@ export class AuthService{
                 password: newPassword,
                 returnSecureToken: true
             }
-        
-        ).pipe(catchError(this.handleError), 
+
+        ).pipe(catchError(this.handleError),
           tap(resData =>{
             this.handleAuthentication(resData.email,resData.localId,resData.idToken, +resData.expiresIn);
         }));
     }
 
-  
+
     login(newEmail:string, newPassword:string){
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.firebaseAPIKey,
             {
@@ -50,7 +54,7 @@ export class AuthService{
                 password: newPassword,
                 returnSecureToken: true
             }
-        ).pipe(catchError(this.handleError), 
+        ).pipe(catchError(this.handleError),
         tap(resData =>{
             console.log("The response login req:"+resData);
             this.handleAuthentication(resData.email,resData.localId,resData.idToken, +resData.expiresIn);
@@ -58,28 +62,28 @@ export class AuthService{
     }
 
     autoLogin(){
-        
+
         const userData:{
             email: string;
             id:string;
             _token:string;
             _tokenExpirationDate:string;
         } = JSON.parse(localStorage.getItem('userData'));
-        
+
         if(!userData){
             console.log("Reload Failed");
             return;
         }
-        
+
         const loadedUser = new User(userData.email,userData.id,userData._token,new Date(userData._tokenExpirationDate));
 
         if(loadedUser.token){
             this.user.next(loadedUser);
             const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
-            
+
         }
-        
+
     }
 
     logout(){
@@ -87,6 +91,7 @@ export class AuthService{
         this.user.next(null);
         this.router.navigate(['/auth']);
         this.headerService.linkButton.next("Authenticate");
+        this.recipeService.deleteAllRecipes();
         if(this.tokenExpirationTimer){
             clearTimeout(this.tokenExpirationTimer);
         }
@@ -104,7 +109,7 @@ export class AuthService{
     private handleAuthentication(email:string, userId, token: string, expiresIn: number){
 
         const expirationDate = new Date( new Date().getTime() + expiresIn * 1000 );
-        const user = new User(email,userId,token,expirationDate); 
+        const user = new User(email,userId,token,expirationDate);
         this.user.next(user);
         this.autoLogout(expiresIn*1000);
         localStorage.setItem('userData',JSON.stringify(user));

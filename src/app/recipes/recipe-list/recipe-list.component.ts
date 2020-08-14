@@ -20,22 +20,22 @@ import { HeaderService } from 'src/app/header/header.service';
         transition('void => *', [
           animate(300,keyframes([
             style({
-              transform: 'translateX(75px)',
+              transform: 'translateY(-20px)',
               opacity:0,
               offset:0
             }),
             style({
-              transform: 'translateX(40px)',
+              transform: 'translateY(-10px)',
               opacity:0.5,
               offset:0.3
             }),
             style({
-              transform: 'translateX(10px)',
+              transform: 'translateY(-5px)',
               opacity:1,
               offset:0.8
             }),
             style({
-              transform: 'translateX(0px)',
+              transform: 'translateY(0px)',
               opacity:1,
               offset:1
             })
@@ -50,7 +50,7 @@ import { HeaderService } from 'src/app/header/header.service';
               })),
             animate(200,
             style({
-              transform: 'translateX(100px)',
+              transform: 'translateY(-20px)',
               opacity:0
             }))
           ])
@@ -118,7 +118,9 @@ export class RecipeListComponent implements OnInit,OnDestroy{
     recipesSaved:boolean=false;
     subscriptionListLoaded: Subscription;
     recipesLoaded:boolean=false;
-
+    recipesUpdated:boolean=false;
+    subscriptionRecipeChanged:Subscription;
+    noRecipesAfterLoading:boolean = false;
 
     constructor(private recipeService: RecipeService,
                 private router: Router,
@@ -131,6 +133,11 @@ export class RecipeListComponent implements OnInit,OnDestroy{
        .subscribe(
            (recipes: Recipe[]) =>{
                this.recipes = recipes;
+               if(recipes.length ===0){
+                 this.noRecipesAfterLoading = true;
+               }else{
+                this.noRecipesAfterLoading = false;
+               }
            }
        );
     this.recipes =this.recipeService.getRecipes();
@@ -144,12 +151,20 @@ export class RecipeListComponent implements OnInit,OnDestroy{
         (state: boolean) =>{
           this.recipesLoaded = state;
         });
+
+    this.subscriptionRecipeChanged = this.recipeService.recipeUpdated.subscribe(
+      (state:boolean)=>{
+        this.recipesUpdated = state;
+      }
+    );
+
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
         this.subscriptionListSaved.unsubscribe();
         this.subscriptionListLoaded.unsubscribe();
+        this.subscriptionRecipeChanged.unsubscribe();
     }
 
     onNewRecipe(){
@@ -158,6 +173,11 @@ export class RecipeListComponent implements OnInit,OnDestroy{
 
     deleteSavesMsg(){
       this.headerService.isRecipesSaved.next(false);
+      this.recipeService.recipeUpdated.next(false);
+    }
+
+    deleteNoRecipesMsg(){
+      this.noRecipesAfterLoading = false;
     }
 
 }

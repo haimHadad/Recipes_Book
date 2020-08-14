@@ -10,7 +10,7 @@
         <div class="col-xs-12 ">
           <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
             <button *ngIf="editMode" style=" padding-top: 3.40px; padding-bottom: 7px;" [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success"><i style="font-size: 22px !important; position: relative; top:3px;" class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Save Changes To List</button>
-            <button style=" padding-top: 3.40px; padding-bottom: 7px;" *ngIf="!editMode" [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success"><i style="font-size: 22px !important; position: relative; top:4px" class="fa fa-plus-square-o" aria-hidden="true"></i> &nbsp;Add Recipe To List</button>
+            <button style=" padding-top: 3.40px; padding-bottom: 7px;" *ngIf="!editMode" [disabled]="!recipeForm.valid" type="=submit" class="btn btn-success"><i style="font-size: 22px !important; position: relative; top:3.5px" class="fa fa-plus-square-o" aria-hidden="true"></i> &nbsp;Add Recipe To List</button>
             <button style="margin-left:0.5%;" (click)="onCancel()" type="=button" class="btn btn-danger"><i style="position: relative; top:1.3px;" class="fa fa-arrow-down" aria-hidden="true"></i>&nbsp; Cancel</button>
             <br><br>
             <div class="row">

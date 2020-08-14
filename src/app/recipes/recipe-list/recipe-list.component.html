@@ -1,4 +1,4 @@
-<div class="row">
+<div  class="row">
     <div class="col-xs-12">
         <button style="cursor: pointer;" (click)="onNewRecipe()"  class="btn btn-success"><i style="font-size: 22px !important; position: relative; top:2.5px" class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;New Recipe</button>
     </div>
@@ -8,9 +8,16 @@
 <div class="row" [@recipesList]>
     <div class="col-xs-12" >
         <app-loadng-spinner *ngIf="recipesLoaded"></app-loadng-spinner>
-        <div [@confirmation] *ngIf="recipesSaved" class="alert alert-dismissible alert-success">
+        <div [@confirmation] *ngIf="recipesSaved || recipesUpdated" class="alert alert-dismissible alert-success">
           <button type="button" class="close" data-dismiss="alert" (click) = "deleteSavesMsg()">&times;</button>
-          <strong>Recipes have been saved successfully.</strong>
+          <strong *ngIf="recipesSaved">Recipes have been saved successfully on our server.</strong>
+          <br *ngIf="recipesSaved && recipesUpdated">
+          <strong *ngIf="recipesUpdated">Recipe have been updated. <br> You still need to save it on our server.</strong>
+        </div>
+        <div *ngIf="noRecipesAfterLoading" [@confirmation] class="alert alert-dismissible alert-danger" (click) = "deleteNoRecipesMsg()">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Oh snap!</strong> &nbsp;
+          <p class="norecipes" >You don't have any recipes</p>
         </div>
         <app-recipe-item
         *ngFor="let recipeEl of recipes; let i = index"

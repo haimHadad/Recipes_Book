@@ -8,7 +8,7 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent  implements OnInit{
 
-  title = 'PROJECT';
+  title = 'Recipes Book';
 
   constructor(private authService:AuthService){}
 

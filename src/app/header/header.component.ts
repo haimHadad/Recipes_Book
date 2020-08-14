@@ -5,6 +5,8 @@ import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.service';
 import { Router } from '@angular/router';
+import { RecipeService } from '../recipes/recipe.service';
+import { Recipe } from '../recipes/recipe.model';
 
 @Component({
     selector: 'app-header',
@@ -20,7 +22,10 @@ export class headerComponent implements OnInit,OnDestroy{
     dropdownClicked=false;
     isAuthenticated = false;
 
-    constructor(private headerservice: HeaderService,private dataStorageService:DataStorageService, private authService: AuthService, private router: Router){
+    constructor(private headerservice: HeaderService,
+      private dataStorageService:DataStorageService,
+      private authService: AuthService,
+      private router: Router){
 
     }
 
@@ -62,7 +67,8 @@ export class headerComponent implements OnInit,OnDestroy{
     onFetchData(){
       this.headerservice.isLoadingRecipes.next(true);
       this.dataStorageService.fetchRecipes().subscribe(
-        () => {this.headerservice.isLoadingRecipes.next(false);}
+        () => {
+          }
       );
     }
 
