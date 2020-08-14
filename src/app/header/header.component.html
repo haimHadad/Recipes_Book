@@ -7,11 +7,11 @@
               <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
             </button>
             <div class="row">
-              <div class="col-xs-3">
+              <div class="col-1 col-sm-3">
                 <img style="width: 50px; height: auto;" src="https://firebasestorage.googleapis.com/v0/b/ng-course-recipe-book-682b9.appspot.com/o/Logo%2Fdinner.png?alt=media&token=ee1535d6-e14f-4a3b-89cb-283748d813aa" alt="">
 
               </div>
-              <div class="col-xs-9">
+              <div class="col-11 col-sm-9">
                 <strong>
                   <a (click)="linkPressed = 'Recipe'"  routerLink="/recipes" class="navbar-brand">
                     Recipes Book
@@ -20,18 +20,18 @@
 
               </div>
             </div>
-
+            <!-- [class.collapse]="collapsed" (window:resize)="collapsed = true" -->
 
           </div>
-          <div  class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
-            <ul style="margin-left: -0.8% ;" class=" nav navbar-nav">
-                <li routerLinkActive="active" *ngIf="isAuthenticated" >
+          <div class="navbar-collapse" >
+            <ul style="margin-left: -0.8% ;" class=" nav navbar-nav ">
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated" >
                     <a class="linkOnMouseHover" (click)="linkPressed = 'Recipe'" [ngClass]="{linkOnMouse: linkPressed ==='Recipe'}" routerLink="/recipes"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;Recipes</a>
                 </li>
-                <li routerLinkActive="active" *ngIf="!isAuthenticated">
+                <li class="nav-item" routerLinkActive="active" *ngIf="!isAuthenticated">
                     <a class="linkOnMouseHover" (click)="linkPressed = 'Authenticate'" [ngClass]="{linkOnMouse: linkPressed ==='Authenticate'}" routerLink="/auth">Register/Login</a>
                 </li>
-                <li routerLinkActive="active" >
+                <li class="nav-item" routerLinkActive="active" >
                     <a class="linkOnMouseHover" (click)="linkPressed = 'ShoppingList'" [ngClass]="{linkOnMouse: linkPressed ==='ShoppingList'}"  routerLink="/shopping-list"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; Shopping List</a>
                 </li>
 
@@ -54,4 +54,5 @@
 
 </nav>
 <!-- style="cursor: pointer;" #manageButton-->
+
 
