@@ -10,7 +10,9 @@ export class AppComponent  implements OnInit{
 
   title = 'Recipes Book';
 
-  constructor(private authService:AuthService){}
+  constructor(private authService:AuthService){
+
+  }
 
 
   ngOnInit() {

@@ -24,12 +24,15 @@
 
 
   .emptyImg{
-    width: 385px;
-    height: 257px;
+    width: 275px;
+    height: 250px ;
+
     background-color: rgb(252, 250, 176);
     border: 2px dashed black;
     text-align: center;
-    padding: 30%;
+    display:table-cell;
+    vertical-align:middle;
+
   }
 
   img{

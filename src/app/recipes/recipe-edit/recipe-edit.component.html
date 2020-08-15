@@ -14,7 +14,7 @@
             <button style="margin-left:0.5%;" (click)="onCancel()" type="=button" class="btn btn-danger"><i style="position: relative; top:1.3px;" class="fa fa-arrow-down" aria-hidden="true"></i>&nbsp; Cancel</button>
             <br><br>
             <div class="row">
-              <div class="col-xs-8">
+              <div class="col-xs-12">
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" formControlName="name" placeholder="Enter Recipe Name" id="name" class="form-control">
@@ -35,13 +35,15 @@
             </div> -->
 
             <div class="row">
-              <div class="col-xs-4">
+
+              <div class=" col-md-4">
+
                 <div class="form-group">
                   <label for="name">Image</label>
                   <uploader (urlLink)="loadImageURL($event)"></uploader>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-5">
                   <br><br>
                   <img  *ngIf="newImgURL !== ''" [src]="newImgURL" class="img-responsive form-control">
                   <div *ngIf="newImgURL === ''" class="emptyImg">Empty Image</div>
@@ -51,10 +53,11 @@
               </div>
 
             </div>
-
+            <br>
             <div class="row">
-              <div class="col-xs-8">
+              <div class="col-xs-12">
                 <div class="form-group">
+
                   <label for="name">Description</label>
                   <textarea type="text" formControlName="description" placeholder="Enter Recipe Description" id="description" class="form-control" rows="6"></textarea>
                   <span *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched" class="invalidMsg">Enter valid description!</span>
@@ -63,19 +66,19 @@
             </div>
 
             <div class="row">
-              <div class="col-xs-10" formArrayName="ingredients">
+              <div class="col-xs-12" formArrayName="ingredients">
                 <label for="name">Ingredients</label>
                 <div [@ingrediantEdit] class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i">
-                  <div class="col-xs-6">
+                  <div class="col-xs-7 col-md-6">
                     <input type="text" placeholder="Enter Ingrediant Name" class="form-control" formControlName="name">
                     <!-- <span *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched" class="invalidMsg">Enter valid ingredient name!</span> -->
                   </div>
 
-                  <div class="col-xs-2">
+                  <div class="col-xs-3 col-md-2">
                     <input type="number" placeholder="Amount" class="form-control" formControlName="amount">
                     <!-- <span *ngIf="!recipeForm.get('amount').valid && recipeForm.get('amount').touched" class="invalidMsg">Enter valid ingredient amount!</span> -->
                   </div>
-                  <div class="col-xs-2">
+                  <div class="col-xs-2 col-md-2">
                     <button type="button" style="padding-top:5px; padding-bottom: 5px;" (click)="onDeleteIngredient(i)" class="btn btn-danger"><i style="font-size: 20px !important;" class="fa fa-times" aria-hidden="true"></i></button>
                   </div>
                   <br><br>
